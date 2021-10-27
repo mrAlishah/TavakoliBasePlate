@@ -1,2 +1,3 @@
-# TavakoliBasePlate
-mr.Tavakoli sample from BasePlate Framework  
+* Project Plan
+- [ ] Design Database schema
+- [ ] Add Hexagonal Architecture base plate

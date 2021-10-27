@@ -1,0 +1,26 @@
+SERVER:
+  ENABLED: true
+  USER: "test"
+  PASS: "test"
+  AUTH_ENABLED: false
+  INGEST_NODE: false
+  TEST_THIRD_PARTY: false
+  PORT: 8080
+LOGGER:
+  LOGLEVEL: TRACE
+  GRAYLOG_ACTIVE: false
+  GRAYLOG_SERVER: "localhost:2515"
+  GRAYLOG_STREAM: "test"
+  DISABLE_STDOUT: false
+REDIS:
+  HOST: "localhost:6379"
+  PASS: test
+  DB: 1
+  TIMEOUT_DURATION: 500
+MYSQL:
+  DRIVER_NAME: "mysql"
+  DATA_SOURCE: "root:123445@tcp(localhost:3306)/GolangTraining"
+  TBLES:
+    {
+      PRODUCTS: "products",
+    }
