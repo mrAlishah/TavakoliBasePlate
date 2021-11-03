@@ -7,11 +7,11 @@ import (
 )
 
 type Config struct {
-	Host                 string        `yaml:"HOST"`
-	Pass                 string        `yaml:"PASS"`
-	Db                   int           `yaml:"DB"`
-	TimeoutDuration      time.Duration `yaml:"TIMEOUT_DURATION"`
-	Key                  string        `yaml:"KEY"`
+	Host            string        `yaml:"HOST"`
+	Pass            string        `yaml:"PASS"`
+	Db              int           `yaml:"DB"`
+	TimeoutDuration time.Duration `yaml:"TIMEOUT_DURATION"`
+	Key             string        `yaml:"KEY"`
 }
 
 type Connection struct {

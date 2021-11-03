@@ -4,7 +4,11 @@ import (
 	"GolangTraining/internal/http/rest"
 	"GolangTraining/internal/logger"
 	"GolangTraining/internal/metrics"
+	//"GolangTraining/internal/storage/mysql"
+	"GolangTraining/internal/storage/postgres"
 	"GolangTraining/internal/subscription"
+	//msql "GolangTraining/platform/mysql"
+	pg "GolangTraining/platform/postgres"
 	"context"
 	"github.com/go-playground/validator/v10"
 	"os"
@@ -48,8 +52,24 @@ func (s *Server) Initialize(ctx context.Context) error {
 	//if err != nil {
 	//	return err
 	//}
+	//
+	//err = mysqlRep.HealthCheck()
+	//if err != nil {
+	//	return err
+	//}
+	//
 
-	service := subscription.CreateService(&s.Config.Service, s.Logger, nil, nil, prometheus, v)
+	pgConn := pg.CreateConnection(s.Config.Postgres, "test.com")
+	gorm, err := pgConn.OpenGORM()
+	if err != nil {
+		return err
+	}
+	pgRep, err := postgres.CreateRepository(gorm)
+	if err != nil {
+		return err
+	}
+
+	service := subscription.CreateService(&s.Config.Service, s.Logger, nil, pgRep, nil, prometheus, v)
 
 	handler := rest.CreateHandler(service)
 

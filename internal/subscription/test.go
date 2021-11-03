@@ -1,6 +1,6 @@
 package subscription
 
-func (s service) Test(req Request) (string, error){
+func (s service) Test(req Request) (string, error) {
 	//implement login
 	//msg := fmt.Sprintf("Hi %s", name)
 	//if name != "Omid"{

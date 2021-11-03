@@ -2,12 +2,13 @@ package rest
 
 import (
 	"GolangTraining/internal/subscription"
+	"context"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"net/http"
 )
 
-func (h *Handler) SignIn(c *gin.Context) {
+func (h *Handler) CreateUser(c *gin.Context) {
 	var request subscription.Request
 
 	if err := c.ShouldBind(&request); err != nil {
@@ -17,19 +18,11 @@ func (h *Handler) SignIn(c *gin.Context) {
 		return
 	}
 
-	msg, err := h.SubscriptionService.Test(request)
-	if err != nil{
+	ctx := context.Background()
+	user, err := h.SubscriptionService.Create(ctx, request)
+	if err != nil {
 		c.JSON(http.StatusInternalServerError, err)
 		return
 	}
-	c.JSON(http.StatusOK, msg)
+	c.JSON(http.StatusOK, user)
 }
-
-//func (h *Handler) GetMessages(c *gin.Context) {
-//	msg, err := h.SubscriptionService.Test(c, "Omid1")
-//	if err != nil{
-//		c.JSON(http.StatusInternalServerError, err)
-//		return
-//	}
-//	c.JSON(http.StatusOK, msg)
-//}

@@ -31,8 +31,7 @@ func SetupRouter(handler *rest.Handler, cfg *MainConfig, p *metrics.Prometheus) 
 
 	{
 		v1.GET("/browse", handler.Health)
-		v1.GET("/sigin", handler.SignIn)
-		//v1.GET("/msg", handler.GetMessages)
+		v1.GET("/createUser", handler.CreateUser)
 	}
 
 	p.MetricsPath = fmt.Sprintf("/%s", "metrics")
